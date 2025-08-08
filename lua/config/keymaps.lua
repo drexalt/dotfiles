@@ -6,5 +6,7 @@ vim.keymap.set("i", "jk", "<esc>")
 vim.keymap.set("n", "<leader>w", ":write<CR>")
 vim.keymap.set({ "n", "v", "x" }, "<leader>y", '"+y<CR>')
 vim.keymap.set({ "n", "v", "x" }, "<leader>d", '"+y<CR>')
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
 
 vim.o.winborder = "rounded"
