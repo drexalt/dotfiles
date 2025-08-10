@@ -9,4 +9,4 @@ vim.keymap.set({ "n", "v", "x" }, "<leader>d", '"+y<CR>')
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 
-vim.o.winborder = "rounded"
+vim.api.nvim_set_hl(0, "LineNr", { fg = "#d7d7d7" })
