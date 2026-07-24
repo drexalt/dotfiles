@@ -1,0 +1,53 @@
+
+macos-titlebar-style = hidden
+theme = Catppuccin Mocha
+font-family = Berkeley Mono
+background-opacity = 0.9
+unfocused-split-opacity = 0
+
+
+
+
+keybind = cmd+t=unbind
+keybind = cmd+w=unbind
+keybind = cmd+r=unbind
+keybind = cmd+1=unbind
+keybind = cmd+2=unbind
+keybind = cmd+3=unbind
+keybind = cmd+4=unbind
+keybind = cmd+5=unbind
+keybind = cmd+6=unbind
+keybind = cmd+7=unbind
+keybind = cmd+8=unbind
+keybind = cmd+digit_1=unbind
+keybind = cmd+digit_2=unbind
+keybind = cmd+digit_3=unbind
+keybind = cmd+digit_4=unbind
+keybind = cmd+digit_5=unbind
+keybind = cmd+digit_6=unbind
+keybind = cmd+digit_7=unbind
+keybind = cmd+digit_8=unbind
+
+keybind = cmd+t=text:\x00c
+
+keybind = cmd+w=text:\x1b[24~
+keybind = cmd+r=text:\x00,
+
+keybind = cmd+1=text:\x001
+keybind = cmd+2=text:\x002
+keybind = cmd+3=text:\x003
+keybind = cmd+4=text:\x004
+keybind = cmd+5=text:\x005
+keybind = cmd+6=text:\x006
+keybind = cmd+7=text:\x007
+keybind = cmd+8=text:\x008
+
+keybind = cmd+digit_1=text:\x001
+keybind = cmd+digit_2=text:\x002
+keybind = cmd+digit_3=text:\x003
+keybind = cmd+digit_4=text:\x004
+keybind = cmd+digit_5=text:\x005
+keybind = cmd+digit_6=text:\x006
+keybind = cmd+digit_7=text:\x007
+keybind = cmd+digit_8=text:\x008
+
