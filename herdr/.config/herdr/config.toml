@@ -1,0 +1,249 @@
+
+onboarding = false
+
+# ~/.config/herdr/config.toml
+
+# -----------------------------------------------------------------------------
+# Look / feel
+# -----------------------------------------------------------------------------
+
+[theme]
+
+# Follow the colors of the outer terminal
+name = "terminal"
+auto_switch = false
+
+[theme.custom]
+
+# Equivalent-ish to tmux bg=default
+panel_bg = "reset"
+
+[ui]
+tab_bar_position = "top"
+accent = "blue"
+host_cursor = "native"
+# Optional: these make Herdr feel a little more like a minimal tmux setup
+# sidebar_start_collapsed = true
+# sidebar_collapsed_mode = "hidden"
+# pane_scrollbars = false
+
+show_agent_labels_on_pane_borders = true
+
+# -----------------------------------------------------------------------------
+# Keys
+# -----------------------------------------------------------------------------
+
+[keys]
+
+prefix = "ctrl+space"
+
+# bind r source-file ...
+reload_config = "prefix+r"
+
+# Herdr normally uses prefix+r for resize, so move that elsewhere
+resize_mode = "prefix+shift+r"
+
+# Use Herdr's session navigator in place of your general session dispensary
+goto = "prefix+f"
+
+# Your prefix+b is used to forward Ctrl-b, so preserve Herdr's sidebar
+# toggle on another key.
+#
+# IMPORTANT: Option/Alt is always paired with Ctrl so AeroSpace
+# doesn't consume it globally.
+toggle_sidebar = "prefix+ctrl+alt+b"
+
+# Already 1-based: prefix+1 ... prefix+9
+switch_tab = "prefix+1..9"
+
+# Herdr's copy mode is already vi/tmux-ish
+copy_mode = "prefix+["
+
+# bind -n F12 kill-window
+# Herdr "tab" is the closest equivalent to a tmux window.
+close_tab = ["prefix+shift+x", "f12"]
+
+
+# -----------------------------------------------------------------------------
+# Pane navigation
+# -----------------------------------------------------------------------------
+#
+# Keep the normal prefix bindings, but also provide direct Ctrl+Option
+# navigation. On macOS:
+#
+#   ctrl+alt = Control + Option
+#
+
+focus_pane_left  = ["prefix+h", "ctrl+alt+h"]
+focus_pane_down  = ["prefix+j", "ctrl+alt+j"]
+focus_pane_up    = ["prefix+k", "ctrl+alt+k"]
+focus_pane_right = ["prefix+l", "ctrl+alt+l"]
+
+
+# -----------------------------------------------------------------------------
+# Tabs / "windows"
+# -----------------------------------------------------------------------------
+
+new_tab      = ["prefix+c", "ctrl+alt+c"]
+previous_tab = ["prefix+p", "ctrl+alt+["]
+next_tab     = ["prefix+n", "ctrl+alt+]"]
+
+
+# -----------------------------------------------------------------------------
+# Pane creation
+# -----------------------------------------------------------------------------
+
+# Side-by-side pane
+split_vertical = ["prefix+v", "ctrl+alt+d"]
+
+# Stacked pane
+split_horizontal = ["prefix+minus", "ctrl+alt+shift+d"]
+
+
+# -----------------------------------------------------------------------------
+# Workspaces
+# -----------------------------------------------------------------------------
+
+# prefix+shift+n is intentionally NOT used here because your notes picker
+# below already owns it.
+#
+# The old prefix+alt+n binding has been changed to prefix+ctrl+alt+n.
+# A direct Ctrl+Option+Shift+N binding is provided as well.
+new_workspace = ["prefix+ctrl+alt+n", "ctrl+alt+shift+n"]
+
+# Normal workspace navigator plus a direct Ctrl+Option shortcut.
+workspace_picker = ["prefix+w", "ctrl+alt+w"]
+
+
+# -----------------------------------------------------------------------------
+# Useful pane actions
+# -----------------------------------------------------------------------------
+
+zoom       = ["prefix+z", "ctrl+alt+z"]
+close_pane = ["prefix+x", "ctrl+alt+x"]
+
+
+# -----------------------------------------------------------------------------
+# Remapped Herdr defaults
+# -----------------------------------------------------------------------------
+#
+# Your Shift bindings collide with several Herdr defaults, so these were
+# previously moved to prefix+Option.
+#
+# Since AeroSpace owns Option globally, every one is now
+# prefix + Ctrl + Option instead.
+#
+
+new_worktree    = "prefix+ctrl+alt+g"
+close_workspace = "prefix+ctrl+alt+d"
+rename_pane     = "prefix+ctrl+alt+p"
+swap_pane_left  = "prefix+ctrl+alt+h"
+
+
+# -----------------------------------------------------------------------------
+# Forward Ctrl-b to programs/nested tmux
+# -----------------------------------------------------------------------------
+
+# bind b send-keys C-b
+[[keys.command]]
+key = "prefix+b"
+type = "shell"
+command = '''"$HERDR_BIN_PATH" pane send-keys "$HERDR_ACTIVE_PANE_ID" ctrl+b'''
+description = "send Ctrl-b"
+
+# bind M send-keys C-b '['
+[[keys.command]]
+key = "prefix+shift+m"
+type = "shell"
+command = '''"$HERDR_BIN_PATH" pane send-keys "$HERDR_ACTIVE_PANE_ID" ctrl+b "["'''
+description = "send Ctrl-b ["
+
+
+# -----------------------------------------------------------------------------
+# Scripts
+# -----------------------------------------------------------------------------
+
+# bind g run-shell "~/.config/scripts/open-github.sh"
+[[keys.command]]
+key = "prefix+g"
+type = "shell"
+command = '''"$HOME/.config/scripts/open-github.sh"'''
+description = "open GitHub"
+
+
+# -----------------------------------------------------------------------------
+# Session/project picker
+#
+# These assume you replace tmux-session-dispensary.sh with a
+# Herdr-aware herdr-session-dispensary.sh.
+#
+# type="pane" gives the picker a temporary full terminal and closes it
+# when the script exits, which is pretty close to your `tmux neww script`
+# behavior.
+# -----------------------------------------------------------------------------
+
+# bind f ...
+[[keys.command]]
+key = "prefix+shift+f"
+type = "pane"
+command = '''"$HOME/.config/scripts/herdr-session-dispensary.sh"'''
+description = "project picker"
+
+# bind N ... ~/Documents/notes
+[[keys.command]]
+key = "prefix+shift+n"
+type = "pane"
+command = '''"$HOME/.config/scripts/herdr-session-dispensary.sh" "$HOME/Documents/notes"'''
+description = "notes picker"
+
+# bind P ... ~/code/
+[[keys.command]]
+key = "prefix+shift+p"
+type = "pane"
+command = '''"$HOME/.config/scripts/herdr-session-dispensary.sh" "$HOME/code"'''
+description = "code picker"
+
+# bind D ... ~/.config
+[[keys.command]]
+key = "prefix+shift+d"
+type = "pane"
+command = '''"$HOME/.config/scripts/herdr-session-dispensary.sh" "$HOME/.config"'''
+description = "dotfiles picker"
+
+# bind H ... ~
+[[keys.command]]
+key = "prefix+shift+h"
+type = "pane"
+command = '''"$HOME/.config/scripts/herdr-session-dispensary.sh" "$HOME"'''
+description = "home picker"
+
+
+# -----------------------------------------------------------------------------
+# Lazygit
+# -----------------------------------------------------------------------------
+
+# bind G neww -n lazygit lazygit
+#
+# A temporary zoomed pane is actually quite nice for this:
+# exit lazygit and you're immediately back where you were.
+[[keys.command]]
+key = "prefix+shift+g"
+type = "pane"
+command = "lazygit"
+description = "lazygit"
+
+
+# -----------------------------------------------------------------------------
+# Environment
+# -----------------------------------------------------------------------------
+
+# Not exactly tmux `show-environment -g`, but useful equivalent.
+[[keys.command]]
+key = "prefix+shift+e"
+type = "pane"
+command = '''env | sort | ${PAGER:-less}'''
+description = "show environment"
+
+
+[ui.toast]
+delivery = "terminal"

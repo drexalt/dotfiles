@@ -1,15 +1,11 @@
 #!/bin/bash
 
-DIRS=(
-    "$HOME/code"
-    "$HOME"
-    "$HOME/Documents/notes"
-)
+CODE_DIR="$HOME/code"
 
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(fd "${DIRS[@]}" --type=dir --max-depth=3 --full-path |
+    selected=$(fd . "$CODE_DIR" --type=dir --max-depth=2 --full-path |
         sed "s|^$HOME/||" |
         sk --margin 10% --color="bw")
     [[ $selected ]] && selected="$HOME/$selected"
