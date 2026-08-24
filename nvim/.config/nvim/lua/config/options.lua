@@ -5,3 +5,4 @@ vim.g.snacks_animate = false
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.scrolloff = 20
+vim.g.root_spec = { "cwd" }

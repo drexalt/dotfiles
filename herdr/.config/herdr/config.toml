@@ -113,7 +113,8 @@ new_workspace = ["prefix+ctrl+alt+n", "ctrl+alt+shift+n"]
 
 # Normal workspace navigator plus a direct Ctrl+Option shortcut.
 workspace_picker = ["prefix+w", "ctrl+alt+w"]
-
+# 1-based: prefix+shift+1 ... prefix+shift+9
+switch_workspace = "prefix+shift+1..9"
 
 # -----------------------------------------------------------------------------
 # Useful pane actions

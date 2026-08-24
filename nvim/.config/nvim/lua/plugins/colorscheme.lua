@@ -10,6 +10,11 @@ return {
       float = {
         transparent = true,
       },
+      custom_highlights = function(colors)
+        return {
+          SnacksDashboardHeader = { fg = colors.mauve, style = { "bold" } },
+        }
+      end,
       integrations = {
         aerial = true,
         alpha = true,
